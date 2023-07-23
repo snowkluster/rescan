@@ -34,6 +34,7 @@ def version():
     console.print("[purple]rescan version 1.0[/purple]")
 
 def scan_port(ip,ports):
+    open_ports = []
     with typer.progressbar(ports) as progress:
         for port in progress:
             try:
@@ -41,7 +42,10 @@ def scan_port(ip,ports):
                 s = socket.socket()
                 s.settimeout(1)
                 port = next(ports)
-                open_ports = s.connect_ex((ip,port))
+                result = s.connect_ex((ip,port))
+                if result == 0:
+                    open_ports.append(port)
+                s.close()
                 console.print(f"[purple]{open_ports}[/purple]\n")
             except(ConnectionRefusedError):
                 console.print("[red]Connection refused by host [/red]")
