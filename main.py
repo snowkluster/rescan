@@ -35,13 +35,13 @@ def version():
 
 def scan_port(ip,ports):
     open_ports = []
-    with typer.progressbar(ports) as port:
+    while ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s = socket.socket()
             s.settimeout(1)
             port = next(ports)
-            result = s.connect_ex((ip,port))
+            result = s.connect_ex((ip,ports))
             if result == 0:
                 open_ports.append(port)
             s.close()
