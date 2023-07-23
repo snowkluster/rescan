@@ -20,7 +20,9 @@ err_console = Console(stderr=True)
 @app.command()
 def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argument(65535)):
     console.print(f"Scanning IP Address: [green]{ip}[green]")
-    console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
+    if (start_port and end_port):
+        console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
+    console.print("Scanning all ports")
     ports = prepare_port(start_port,end_port)
     scan_port(ip,ports)
     threading()
