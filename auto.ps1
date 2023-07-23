@@ -1,5 +1,3 @@
-python -m  pipreqs.pipreqs . --force
-
 git add .
 
 $message = Read-Host "Enter commit message: "
