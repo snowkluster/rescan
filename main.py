@@ -35,7 +35,7 @@ def version():
 
 def scan_port(ip,ports):
     open_ports = []
-    while ports:
+    for _ in  ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s = socket.socket()
