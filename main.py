@@ -41,7 +41,7 @@ def scan_port(ip,ports):
             s = socket.socket()
             s.settimeout(1)
             port = next(ports)
-            result = s.connect_ex((ip,ports))
+            result = s.connect_ex((ip,port))
             if result == 0:
                 open_ports.append(port)
             s.close()
