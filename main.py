@@ -37,10 +37,11 @@ def scan_port(ip,ports):
     with typer.progressbar(ports) as progress:
         for port in progress:
             try:
+                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 s = socket.socket()
                 s.settimeout(1)
                 port = next(ports)
-                open_ports = s.connect((ip,port))
+                open_ports = s.connect_ex((ip,port))
                 console.print(f"[purple]{open_ports}[/purple]\n")
             except(ConnectionRefusedError):
                 console.print("[red]Connection refused by host [/red]")
