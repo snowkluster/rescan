@@ -44,12 +44,12 @@ def scan_port(ip,ports):
             result = s.connect_ex((ip,port))
             if result == 0:
                 open_ports.append(port)
-            console.print(f"[purple]{open_ports}[/purple]\n")
             s.close()
         except(ConnectionRefusedError):
             console.print("[red]Connection refused by host [/red]")
             console.print_exception(show_locals=False)
             sys.exit()
+    console.print(f"[purple]{open_ports}[/purple]\n")
 
 def threading(threads=20):
     thread_list = []
