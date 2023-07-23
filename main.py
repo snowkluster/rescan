@@ -3,12 +3,14 @@
 import typer
 from rich import print
 from rich.console import Console
+from rich.progress import track
 import dns.resolver
 import dns.reversename
 import dns.zone
 import dns.exception
 from threading import Thread
 import socket
+import sys
 
 console = Console()
 app = typer.Typer(help=console.print("Made By [red]SnowKluster[/red]"))
@@ -16,19 +18,10 @@ typer.Typer(help=console.print("Github: [light-blue]https://github.com/snowklust
 err_console = Console(stderr=True)
 
 @app.command()
-def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argument(65535),threads: int = typer.Argument(20)):
+def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argument(65535)):
     console.print(f"Scanning IP Address: [green]{ip}[green]")
     if (start_port and end_port):
         console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
-        ports = prepare_port(start_port,end_port)
-        scan_port(ip,ports)
-        threading()
-    elif(start_port and end_port and threads):
-        console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
-        ports = prepare_port(start_port,end_port)
-        scan_port(ip,ports)
-        threading(threads)
-    else:
         ports = prepare_port(start_port,end_port)
         scan_port(ip,ports)
         threading()
@@ -42,18 +35,18 @@ def version():
     console.print("[purple]rescan version 1.0[/purple]")
 
 def scan_port(ip,ports):
-    while True:
-        try:
-            s = socket.socket()
-            s.settimeout(1)
-            port = next(ports)
-            open_ports = s.connect(ip,port)
-            console.print(f"[purple]{open_ports}[/purple]\n")
-        except(ConnectionRefusedError):
-            console.print("[red]Connection refused by host [/red]")
-            continue
-        except StopIteration:
-            break
+    with typer.progressbar(ports) as progress:
+        for port in progress:
+            try:
+                s = socket.socket()
+                s.settimeout(1)
+                port = next(ports)
+                open_ports = s.connect((ip,port))
+                console.print(f"[purple]{open_ports}[/purple]\n")
+            except(ConnectionRefusedError):
+                console.print("[red]Connection refused by host [/red]")
+                console.print_exception(show_locals=False)
+                sys.exit()
 
 def threading(threads=20):
     thread_list = []
