@@ -35,22 +35,21 @@ def version():
 
 def scan_port(ip,ports):
     open_ports = []
-    with typer.progressbar(ports) as progress:
-        for port in progress:
-            try:
-                s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                s = socket.socket()
-                s.settimeout(1)
-                port = next(ports)
-                result = s.connect_ex((ip,port))
-                if result == 0:
-                    open_ports.append(port)
-                s.close()
-                console.print(f"[purple]{open_ports}[/purple]\n")
-            except(ConnectionRefusedError):
-                console.print("[red]Connection refused by host [/red]")
-                console.print_exception(show_locals=False)
-                sys.exit()
+    with typer.progressbar(ports) as port:
+        try:
+            s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            s = socket.socket()
+            s.settimeout(1)
+            port = next(ports)
+            result = s.connect_ex((ip,port))
+            if result == 0:
+                open_ports.append(port)
+            s.close()
+            console.print(f"[purple]{open_ports}[/purple]\n")
+        except(ConnectionRefusedError):
+            console.print("[red]Connection refused by host [/red]")
+            console.print_exception(show_locals=False)
+            sys.exit()
 
 def threading(threads=20):
     thread_list = []
