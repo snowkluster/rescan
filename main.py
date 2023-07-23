@@ -22,8 +22,16 @@ def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argum
         console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
         ports = prepare_port(start_port,end_port)
         scan_port(ip,ports)
+        threading()
+    elif(start_port and end_port and threads):
+        console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
+        ports = prepare_port(start_port,end_port)
+        scan_port(ip,ports)
+        threading(threads)
     else:
-        scan_port(ip)
+        ports = prepare_port(start_port,end_port)
+        scan_port(ip,ports)
+        threading()
 
 @app.command()
 def recon(domain: str):
@@ -33,22 +41,21 @@ def recon(domain: str):
 def version():
     console.print("[purple]rescan version 1.0[/purple]")
 
-def scan_port(ip,ports=None):
-    if ports != None:
-        while True:
-            try:
-                s = socket.socket()
-                s.settimeout(1)
-                port = next(ports)
-                open_ports = s.connect(ip,port)
-                console.print(f"[purple]{open_ports}[/purple]\n")
-            except(ConnectionRefusedError):
-                console.print("[red]Connection refused by host [/red]")
-                continue
-            except StopIteration:
-                break
+def scan_port(ip,ports):
+    while True:
+        try:
+            s = socket.socket()
+            s.settimeout(1)
+            port = next(ports)
+            open_ports = s.connect(ip,port)
+            console.print(f"[purple]{open_ports}[/purple]\n")
+        except(ConnectionRefusedError):
+            console.print("[red]Connection refused by host [/red]")
+            continue
+        except StopIteration:
+            break
 
-def threading(threads):
+def threading(threads=20):
     thread_list = []
     for _ in range(threads+1):
         thread_list.append(Thread(target=scan_port))
