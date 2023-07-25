@@ -1,10 +1,5 @@
 # rescan
-A minimal utility for recon written in python  
-
-# Usage 
-- port scanning
-- zone transfer detection
-- check dns records
+A modern port scanner for recon written in python
 
 # Setup
 - `git clone https://github.com/snowkluster/rescan.git`
