@@ -15,13 +15,15 @@ typer.Typer(help=console.print("Github: [light-blue]https://github.com/snowklust
 err_console = Console(stderr=True)
 
 @app.command()
-def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argument(65535)):
+def scan(ip: str,num_threads: int,start_port: int = typer.Argument(0),end_port: int = typer.Argument(65535)):
     console.print(f"Scanning IP Address: [green]{ip}[green]")
     if (start_port and end_port):
         console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
-    console.print("Scanning all ports")
+    console.print("Scanning all ports with default Config")
+    if (num_threads):
+        console.print(f"Starting scan with {num_threads} threads")
     ports = prepare_port(start_port,end_port)
-    threading(ip,ports)
+    threading(ip,ports,threads=num_threads)
 
 @app.command()
 def version():
