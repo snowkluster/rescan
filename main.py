@@ -27,7 +27,6 @@ def version():
     console.print("[purple]rescan version 1.0[/purple]")
 
 def scan_port(ip,ports):
-    open_ports = []
     for port in  ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -35,16 +34,14 @@ def scan_port(ip,ports):
             s.settimeout(1)
             result = s.connect_ex((ip,port))
             if result == 0:
-                open_ports.append(port)
                 console.print(f"open port: {port}")
             s.close()
         except(ConnectionRefusedError):
             console.print("[red]Connection refused by host [/red]")
             console.print_exception(show_locals=False)
             sys.exit()
-    # console.print(f"[purple]{open_ports}[/purple]\n")
 
-def threading(ip,port,threads=20):
+def threading(ip,port,threads=40):
     thread_list = []
     for _ in range(threads+1):
         thread_list.append(Thread(target=scan_port,args=(ip,port)))
