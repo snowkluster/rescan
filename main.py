@@ -10,7 +10,7 @@ import socket
 import sys
 
 console = Console()
-app = typer.Typer(help=console.print("Made By SnowKluster"))
+app = typer.Typer(help=console.print("Made By [blueSnowKluster[/blue]"))
 typer.Typer(help=console.print("Github: [light-blue]https://github.com/snowkluster[/light-blue]"))
 err_console = Console(stderr=True)
 
