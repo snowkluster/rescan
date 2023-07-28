@@ -5,6 +5,7 @@ from rich import print
 from rich.console import Console
 from rich.progress import track
 from threading import Thread
+import signal
 import socket
 import sys
 
@@ -32,6 +33,9 @@ def info():
     console.print("for more info checkout the project github")
 
 def scan_port(ip,ports):
+    quitting = False
+    if quitting:
+        sys.exit("Exitting Program")
     for port in  ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -55,9 +59,14 @@ def threading(ip,port,threads=60):
     for thread in thread_list:
         thread.join()
 
+def signal_handler(signal, frame):
+    print("exiting")
+    sys.exit(0)
+
 def prepare_port(sport,eport):
     for ports in range(sport,eport):
         yield ports
 
 if __name__ == "__main__":
     app()
+    signal.signal(signal.SIGINT, signal_handler)
