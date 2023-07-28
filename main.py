@@ -9,7 +9,7 @@ import socket
 import sys
 
 console = Console()
-app = typer.Typer(help=console.print("Made By [red]SnowKluster[/red]"))
+app = typer.Typer(help=console.print("Made By SnowKluster"))
 typer.Typer(help=console.print("Github: [light-blue]https://github.com/snowkluster[/light-blue]"))
 err_console = Console(stderr=True)
 
@@ -26,6 +26,11 @@ def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argum
 def version():
     console.print("[purple]rescan version 1.0[/purple]")
 
+@app.command()
+def info():
+    console.print("the program defaults to 60 threads, pass number of threads you want to you use to change it")
+    console.print("for more info checkout the project github")
+
 def scan_port(ip,ports):
     for port in  ports:
         try:
@@ -41,7 +46,7 @@ def scan_port(ip,ports):
             console.print_exception(show_locals=False)
             sys.exit()
 
-def threading(ip,port,threads=40):
+def threading(ip,port,threads=60):
     thread_list = []
     for _ in range(threads+1):
         thread_list.append(Thread(target=scan_port,args=(ip,port)))
