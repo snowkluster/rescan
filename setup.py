@@ -34,8 +34,8 @@ setup(
 
     install_requires = [
 
-        'rich==13.4.2',
-        'typer==0.9.0'
+        'rich~=13.4.2',
+        'typer~=0.9.0'
     ],
 
     keywords = ['Port Scanner', 'Modern'],
