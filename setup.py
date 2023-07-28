@@ -9,11 +9,11 @@ setup(
 
     py_modules = ["rescan"],
 
-    package_dir = {'.':'src'},
+    package_dir = {'':'src'},
 
     author = 'SnowKluster',
 
-    long_description = open('README.md').read() + '\n\n' + open('CHANGELOG.md').read(),
+    long_description = open('README.md').read(),
     long_description_content_type = "text/markdown",
 
     url='https://github.com/snowkluster/rescan',
