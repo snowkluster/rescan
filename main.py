@@ -42,7 +42,7 @@ def scan_port(ip,ports):
             console.print("[red]Connection refused by host [/red]")
             console.print_exception(show_locals=False)
             sys.exit()
-    console.print(f"[purple]{open_ports}[/purple]\n")
+    # console.print(f"[purple]{open_ports}[/purple]\n")
 
 def threading(ip,port,threads=20):
     thread_list = []
