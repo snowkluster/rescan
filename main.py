@@ -55,6 +55,7 @@ def threading(ip,port,threads=60):
     for _ in range(threads+1):
         thread_list.append(Thread(target=scan_port,args=(ip,port)))
     for thread in thread_list:
+        thread.daemon=True
         thread.start()
     for thread in thread_list:
         thread.join()
