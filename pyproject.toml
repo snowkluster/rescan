@@ -1,0 +1,18 @@
+[project]
+name = "rescan"
+version = "1.0.0"
+authors = [
+  { name="SnowKluster"},
+]
+description = "A Modern Port scanner in python"
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: GPL-2.0 License",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/snowkluster/rescan"
+"Bug Tracker" = "https://github.com/snowkluster/rescan/issues"
