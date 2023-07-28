@@ -9,7 +9,7 @@ setup(
 
     py_modules = ["rescan"],
 
-    package_dir = {'':'src'},
+    package_dir = {'.':'src'},
 
     author = 'SnowKluster',
 
