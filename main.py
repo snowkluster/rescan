@@ -28,16 +28,15 @@ def version():
 
 def scan_port(ip,ports):
     open_ports = []
-    for _ in  ports:
+    for port in  ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
             s = socket.socket()
             s.settimeout(1)
-            port = next(ports)
             result = s.connect_ex((ip,port))
             if result == 0:
                 open_ports.append(port)
-                console.print(f"{port}")
+                console.print(f"open port: {port}")
             s.close()
         except(ConnectionRefusedError):
             console.print("[red]Connection refused by host [/red]")
