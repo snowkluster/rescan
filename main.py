@@ -22,7 +22,7 @@ def scan(ip: str,num_threads: int,start_port: int = typer.Argument(0),end_port: 
     console.print("Scanning all ports with default Config")
     if (num_threads):
         console.print(f"Starting scan with {num_threads} threads")
-    ports = prepare_port(start_port,end_port)
+    ports = prepare_port(start_port,end_port+1)
     threading(ip,ports,threads=num_threads)
 
 @app.command()
