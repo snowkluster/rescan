@@ -20,8 +20,7 @@ def scan(ip: str,start_port: int = typer.Argument(0),end_port: int = typer.Argum
         console.print(f"Starting port scan from [green]{start_port}[/green] till [green]{end_port}[/green]")
     console.print("Scanning all ports")
     ports = prepare_port(start_port,end_port)
-    scan_port(ip,ports)
-    threading()
+    threading(ip,ports)
 
 @app.command()
 def version():
@@ -38,6 +37,7 @@ def scan_port(ip,ports):
             result = s.connect_ex((ip,port))
             if result == 0:
                 open_ports.append(port)
+                console.print(f"{port}")
             s.close()
         except(ConnectionRefusedError):
             console.print("[red]Connection refused by host [/red]")
@@ -45,10 +45,10 @@ def scan_port(ip,ports):
             sys.exit()
     console.print(f"[purple]{open_ports}[/purple]\n")
 
-def threading(threads=20):
+def threading(ip,port,threads=20):
     thread_list = []
     for _ in range(threads+1):
-        thread_list.append(Thread(target=scan_port))
+        thread_list.append(Thread(target=scan_port,args=(ip,port)))
     for thread in thread_list:
         thread.start()
     for thread in thread_list:
