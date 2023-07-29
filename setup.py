@@ -5,6 +5,7 @@ setup(
     version = '1.0.2',
     description = 'A modern port scanner for recon written in python',
     py_modules = ["rescan"],
+    scripts=['./scripts/rescan'],
     packages = ["rescan"],
     entry_points = {
         "console_scripts": ['rescan = rescan.rescan:main']
