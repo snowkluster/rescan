@@ -16,4 +16,4 @@ classifiers = [
 [project.urls]
 "Homepage" = "https://github.com/snowkluster/rescan"
 "Bug Tracker" = "https://github.com/snowkluster/rescan/issues"
-Changelog = https://github.com/snowkluster/rescan/blob/master/CHANGELOG.md
+Changelog = "https://github.com/snowkluster/rescan/blob/master/CHANGELOG.md"
