@@ -2,7 +2,7 @@ from setuptools import setup
 
 setup(
     name = 'rescan',
-    version = '1.0.1',
+    version = '1.0.2',
     description = 'A modern port scanner for recon written in python',
     py_modules = ["rescan"],
     packages = ["rescan"],
