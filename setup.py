@@ -7,7 +7,7 @@ setup(
     py_modules = ["rescan"],
     packages = ["rescan"],
     entry_points = {
-        "console_scripts": ['rescan = rescan.rescan:app()']
+        "console_scripts": ['rescan = rescan.rescan:main']
         },
     package_dir = {'':'src'},
     author = 'SnowKluster',

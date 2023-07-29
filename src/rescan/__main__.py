@@ -1,2 +1,2 @@
-from .rescan import app
-app()
+from .rescan import main
+main()

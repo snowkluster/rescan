@@ -70,6 +70,9 @@ def prepare_port(sport,eport):
     for ports in range(sport,eport):
         yield ports
 
-if __name__ == "__main__":
+
+def main():
     app()
     signal.signal(signal.SIGINT, signal_handler)
+if __name__ == "__main__":
+    main()
