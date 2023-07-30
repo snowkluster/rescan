@@ -23,3 +23,11 @@ Third release of rescan
 ### Updated
 - updated rescan-runner.py
 - updated README.md
+
+## [1.0.3] - 30/7/23
+### Added
+- support for a posix envionment 
+- better info messages
+### Updated
+- updated rescan-runner.py
+- posix script argv errors

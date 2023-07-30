@@ -27,7 +27,7 @@ def scan(ip: str,num_threads: int,start_port: int = typer.Argument(0),end_port: 
 
 @app.command()
 def version():
-    console.print("[purple]rescan version 1.0[/purple]")
+    console.print("[purple]rescan version 1.0.3[/purple]")
 
 @app.command()
 def info():
