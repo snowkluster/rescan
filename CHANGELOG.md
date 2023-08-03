@@ -26,7 +26,7 @@ Third release of rescan
 
 ## [1.0.3] - 30/7/23
 ### Added
-- support for a posix envionment 
+- support for a posix environment 
 - better info messages
 ### Updated
 - updated rescan-runner.py
