@@ -37,7 +37,7 @@ def info():
 def scan_port(ip,ports):
     quitting = False
     if quitting:
-        sys.exit("Exitting Program")
+        sys.exit("Exiting Program")
     for port in  ports:
         try:
             s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
