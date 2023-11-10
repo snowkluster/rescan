@@ -9,7 +9,7 @@ except(IOError, ImportError):
 
 setup(
     name = 'rescan',
-    version = '1.0.3',
+    version = '1.0.4',
     description = 'A modern port scanner for recon written in python',
     py_modules = ["rescan"],
     scripts=['./scripts/rescan'],

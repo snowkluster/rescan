@@ -31,3 +31,10 @@ Third release of rescan
 ### Updated
 - updated rescan-runner.py
 - posix script argv errors
+
+## [1.0.4] - 10/11/23
+### Added
+- Added PyPI compatible markdown for description and rst generator
+### Updated
+- updated auto scripts
+- windows venv error bug fix
