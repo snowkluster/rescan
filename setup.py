@@ -1,4 +1,11 @@
 from setuptools import setup
+README = 'README.md'
+
+try:
+    import pypandoc
+    long_description = pypandoc.convert_file(README, 'rst')
+except(IOError, ImportError):
+    long_description = open('README.md').read()
 
 setup(
     name = 'rescan',
@@ -6,13 +13,14 @@ setup(
     description = 'A modern port scanner for recon written in python',
     py_modules = ["rescan"],
     scripts=['./scripts/rescan'],
+    data_files=[('', [README])],
     packages = ["rescan"],
     entry_points = {
         "console_scripts": ['rescan = rescan.rescan:main']
         },
     package_dir = {'':'src'},
     author = 'SnowKluster',
-    long_description = open('README.md').read(),
+    long_description = open(README).read(),
     long_description_content_type = "text/markdown",
     url='https://github.com/snowkluster/rescan',
     include_package_data=True,
